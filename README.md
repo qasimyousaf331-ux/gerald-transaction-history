@@ -138,32 +138,9 @@ src/features/transactions/
 
 ---
 
-## What I'd Improve With More Time
-
-### Next 1-2 Hours
-- Add accessibility labels for screen readers
-- Write unit tests for `formatters` and `useDebounce`
-- Add retry button on error state
-- Skeleton loading instead of spinner
-
-### Next Sprint
-- Transaction details screen (tap to view/edit)
-- Date range picker for filtering
-- Sort by date/amount/merchant
-- Smooth animations with Reanimated
-
-### Long Term
-- Real API integration
-- Offline support (AsyncStorage caching)
-- Receipt scanning with camera
-- Budget tracking features
-- Charts and analytics
-
----
-
 ## AI Tools Used
 
-**GitHub Copilot** was used throughout development.
+**Cursor AI** was used throughout development.
 
 ### How It Helped
 - **Boilerplate scaffolding** - Component structure, TypeScript interfaces
