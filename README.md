@@ -2,7 +2,7 @@
 
 > A React Native transaction history screen built with TypeScript, featuring filtering, search, and thoughtful state management.
 
-**Demo:** _[Video/GIF to be added]_
+**Demo:** https://drive.google.com/file/d/1nrhX_gmgqmnmIrsmN0W_dA45gZoOfCfB/view?usp=sharing
 
 **What's Implemented:**
 ✅ Transaction list (merchant, amount, date, category)  
