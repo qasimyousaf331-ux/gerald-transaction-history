@@ -3,7 +3,7 @@ import {
   formatDate,
   getAmountColor,
   formatAmountWithSign,
-} from '../src/utils/formatters';
+} from '../src/features/transactions/utils';
 
 describe('formatters', () => {
   describe('formatCurrency', () => {

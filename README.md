@@ -42,21 +42,43 @@ npm test
 
 ## Architecture Decisions
 
-### 1. **Custom Hooks for Business Logic**
+### 1. **Feature-Driven Design (FDD)**
+**Decision:** Organized code by feature (transactions) rather than technical layers (components, hooks, etc).
+
+**Why:** 
+- **Scalability** - Easy to add new features without affecting existing ones
+- **Encapsulation** - All feature code in one place with public API
+- **Maintainability** - Clear boundaries and ownership
+- **Team collaboration** - Features can be owned by different teams
+
+**Structure:**
+```
+src/features/transactions/
+├── components/  (UI)
+├── hooks/       (logic)
+├── types/       (TS definitions)
+├── utils/       (helpers)
+├── data/        (mocks)
+└── index.ts     (public API)
+```
+
+**Impact:** Easy to extract features into packages, reduce merge conflicts, and scale the codebase.
+
+### 2. **Custom Hooks for Business Logic**
 **Decision:** Created `useTransactions` hook to manage all data fetching, filtering, and search logic.
 
 **Why:** Separates concerns - the screen component only handles rendering, while the hook manages complexity. Makes logic reusable and testable.
 
 **Impact:** Screen stays under 80 lines, easy to understand at a glance.
 
-### 2. **Debounced Search (300ms)**
+### 3. **Debounced Search (300ms)**
 **Decision:** Built custom `useDebounce` hook instead of filtering on every keystroke.
 
 **Why:** Performance - with 25 transactions, filtering on every keystroke causes noticeable lag. Debouncing reduces filter operations by ~90% during typing.
 
 **Trade-off:** 300ms delay feels natural (users pause briefly while typing), but could be adjusted based on data size.
 
-### 3. **Header Outside FlatList**
+### 4. **Header Outside FlatList**
 **Decision:** Render search/filter as separate View above FlatList, not as `ListHeaderComponent`.
 
 **Why:** Originally used `ListHeaderComponent`, but TextInput kept losing focus after each keystroke. The header was recreating on every render because it depended on `searchQuery`.
@@ -65,7 +87,7 @@ npm test
 
 **Trade-off:** Header doesn't scroll with list, but UX is significantly better (continuous typing).
 
-### 4. **Aggressive Memoization**
+### 5. **Aggressive Memoization**
 **Decision:** Used `useCallback` and `useMemo` extensively throughout components and hooks.
 
 **Why:** 
@@ -75,7 +97,7 @@ npm test
 
 **Trade-off:** More verbose code, but performance is noticeably better.
 
-### 5. **In-Memory Mock with Async Simulation**
+### 6. **In-Memory Mock with Async Simulation**
 **Decision:** Simple array with `setTimeout` to simulate API latency (1s delay, 5% error rate).
 
 **Why:** 
@@ -149,7 +171,7 @@ npm test
 - **Faster iteration** - Quick implementation of known patterns
 
 ### Where I Made the Decisions
-- **Architecture** - Custom hooks strategy, folder structure, memoization approach
+- **Architecture** - Feature-driven design, custom hooks strategy, memoization approach
 - **Performance fixes** - Header placement to fix focus loss, debounce timing
 - **Problem-solving** - Debugging React hooks violations, keyboard focus issues
 - **UX decisions** - Color system, state handling, error messages
@@ -160,28 +182,37 @@ npm test
 
 ## Project Structure
 
+**Feature-Driven Design:**
 ```
-src/
-├── components/       # Reusable UI
-│   ├── TransactionItem.tsx
-│   ├── FilterButtons.tsx
-│   └── SearchBar.tsx
-├── screens/          # Screen components
-│   └── TransactionListScreen.tsx
-├── hooks/            # Business logic
-│   ├── useTransactions.ts
-│   └── useDebounce.ts
-├── types/            # TypeScript definitions
-│   └── transaction.ts
-├── utils/            # Pure functions
-│   └── formatters.ts
-└── data/             # Mock data (25 transactions)
-    └── transactions.mock.ts
+src/features/
+└── transactions/          # Self-contained feature module
+    ├── components/        # UI components
+    │   ├── TransactionItem.tsx
+    │   ├── FilterButtons.tsx
+    │   ├── SearchBar.tsx
+    │   └── TransactionListScreen.tsx
+    ├── hooks/             # Business logic
+    │   ├── useTransactions.ts
+    │   └── useDebounce.ts
+    ├── types/             # TypeScript definitions
+    │   └── index.ts
+    ├── utils/             # Helper functions
+    │   └── index.ts
+    ├── data/              # Mock data
+    │   └── index.ts
+    ├── index.ts           # Public API
+    └── README.md          # Feature documentation
 ```
+
+**Benefits:**
+- ✅ **Encapsulation** - Clear feature boundaries
+- ✅ **Scalability** - Easy to add new features
+- ✅ **Maintainability** - All related code in one place
+- ✅ **Team collaboration** - Features can be owned independently
 
 **Tech Stack:**  
 React Native 0.83.1 (CLI) • TypeScript 5.8.3 • FlatList • StyleSheet API
 
 ---
 
-**Time spent:** ~4 hours (3.5 hours implementation + 30 min documentation)
+**Time spent:** ~4.5 hours (4 hours implementation + 30 min documentation)

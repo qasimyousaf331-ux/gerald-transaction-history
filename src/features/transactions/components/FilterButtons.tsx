@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { TransactionFilter } from '../hooks';
+import { TransactionFilter } from '../types';
 
 interface FilterButtonsProps {
   activeFilter: TransactionFilter;

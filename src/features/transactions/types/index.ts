@@ -8,3 +8,5 @@ export interface Transaction {
   category: string;
   type: TransactionType;
 }
+
+export type TransactionFilter = 'all' | 'income' | 'expense';

@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Transaction, TransactionType } from '../types/transaction';
-import { transactions as mockTransactions } from '../data/transactions.mock';
+import { Transaction, TransactionFilter } from '../types';
+import { transactions as mockTransactions } from '../data';
 import { useDebounce } from './useDebounce';
-
-export type TransactionFilter = 'all' | TransactionType;
 
 interface UseTransactionsResult {
   transactions: Transaction[];

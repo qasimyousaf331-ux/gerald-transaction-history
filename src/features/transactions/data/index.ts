@@ -1,4 +1,4 @@
-import { Transaction } from '../types/transaction';
+import { Transaction } from '../types';
 
 export const transactions: Transaction[] = [
   {
@@ -147,7 +147,7 @@ export const transactions: Transaction[] = [
   },
   {
     id: '19',
-    merchant: 'McDonald’s',
+    merchant: "McDonald's",
     amount: -8.75,
     date: '2026-01-16T12:10:00Z',
     category: 'Food & Drink',

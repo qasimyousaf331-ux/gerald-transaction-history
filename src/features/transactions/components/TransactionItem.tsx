@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Transaction } from '../types/transaction';
-import { formatCurrency, formatDate, getAmountColor, formatAmountWithSign } from '../utils';
+import { Transaction } from '../types';
+import { formatDate, getAmountColor, formatAmountWithSign } from '../utils';
 
 interface TransactionItemProps {
   transaction: Transaction;

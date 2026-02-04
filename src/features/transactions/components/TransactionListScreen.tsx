@@ -1,7 +1,9 @@
 import React, { useCallback } from "react";
 import { View, Text, FlatList, RefreshControl, StyleSheet } from "react-native";
 import { useTransactions } from "../hooks/useTransactions";
-import { TransactionItem, FilterButtons, SearchBar } from "../components";
+import { TransactionItem } from "../components/TransactionItem";
+import { FilterButtons } from "../components/FilterButtons";
+import { SearchBar } from "../components/SearchBar";
 
 export const TransactionListScreen = () => {
   const {
