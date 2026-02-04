@@ -11,7 +11,8 @@
 ✅ Debounced search by merchant  
 ✅ Loading, error, empty states  
 ✅ Pull-to-refresh  
-✅ FlatList performance optimizations
+✅ FlatList performance optimizations  
+✅ Unit tests for formatter utilities (15 tests)
 
 ---
 
@@ -32,6 +33,9 @@ npm start
 # Run app (in separate terminal)
 npm run ios        # iOS
 npm run android    # Android
+
+# Run tests
+npm test
 ```
 
 ---
@@ -101,9 +105,10 @@ npm run android    # Android
 **Impact:** Missing screen reader labels (`accessibilityLabel`, `accessibilityHint`).  
 **Fix:** ~30 min to add proper labels to all interactive elements.
 
-**3. No Unit Tests**  
-**Why:** Wanted to demonstrate architecture over testing coverage.  
-**Impact:** Would need tests for production (especially `formatters.ts` and `useDebounce`).
+**3. Unit Tests - Added for Formatters**  
+**Decision:** Added comprehensive tests for `formatters.ts` (15 tests covering all edge cases).  
+**Why:** Pure functions are easiest to test and demonstrate testing mindset.  
+**What's missing:** Hook tests (would need more complex mocking).
 
 **4. Basic Error Handling**  
 **Why:** Mock data has simple error scenarios.  
